@@ -18,5 +18,5 @@ function crimesafe_check_csrf(string $token, string $scope): bool
     $prefix = substr($dec, 0, 32);
     $suffix = substr($dec, 32);
 
-    return (hash("sha384", $prefix . $_SESSION['csrf_key'] . $scope, true) == $suffix);
+    return (hash_equals(hash("sha384", $prefix . $_SESSION['csrf_key'] . $scope, true), $suffix));
 }
